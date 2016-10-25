@@ -10,6 +10,7 @@ var timer;
 var times = [];
 var canvasClientX = 0;
 var canvasClientY = 0;
+var delay = 100;
 
 var c;
 var ctx;
@@ -49,7 +50,8 @@ function clear() {
 
 function displayBoard() {
   var board = "";
-	
+	var cellCnt = 0;
+
 	ctx.fillStyle = "#FFFFFF";
 	ctx.fillRect(0,0,xpx, ypx);
 	
@@ -60,11 +62,13 @@ function displayBoard() {
   	  	l = j*10+1;
 	  		ctx.fillStyle = "#FF0000";
 	  		ctx.fillRect(l,t,8,8);
+	  		cellCnt++;
   	  }
 	  }
   }
 
   $("#count").html(genNr);
+  $("#cellCnt").html(cellCnt);
   $("#board").html(board);
 }
 
@@ -73,6 +77,8 @@ function getNextGen() {
 	var row = [];
   var board = "";
   var nxtCellArr = [];
+
+  cellCnt = 0;
 
   for (let y = 0; y < h; y++) {
   	row = [];
@@ -109,6 +115,7 @@ function getNextGen() {
   			case 3: row.push(true); break;
   			default: row.push(false);
   		}
+
   	}
   	nxtCellArr.push(row);
   }
@@ -122,7 +129,7 @@ function startStop() {
 			getNextGen();
 			displayBoard();
 			genNr++;
-		}, 100);
+		}, delay);
 		$("#btnStartStop").html("Pause");
 	} else {
 		window.clearInterval(timer);
@@ -136,6 +143,14 @@ function toggle(e) {
 
 		curCellArr[y][x] = !curCellArr[y][x];
 		displayBoard();
+}
+
+function setDelay() {
+  delay = 110 - document.getElementById("speedNum").value;
+  if ($("#btnStartStop").html() === "Pause") {
+  	$("#btnStartStop").click();
+  	$("#btnStartStop").click();
+  }
 }
 
 function standardDeviation(values){
@@ -162,7 +177,9 @@ function average(data){
   return avg;
 }
 
-
+function pixelsNumeric(px) {
+	return parseInt(px.substr(0, px.length-2));
+}
 
 $(document).ready( function() {
   "use strict";
@@ -174,17 +191,23 @@ $(document).ready( function() {
   ypx = (parseInt(window.innerHeight/20) + 1) * 10;
 
   $("#playArea").css("width", xpx + 14);
-	$("#playArea").css("height", ypx + 59);
+	$("#playArea").css("height", ypx + 154);
   $("#myCanvas").css("width", xpx);
 	$("#myCanvas").css("height", ypx);
+
+	$("#buttons").css("top", ypx + 50);
+	$("#speedDiv").css("top", ypx + 100);
+
+	$("#generations").css("left", (pixelsNumeric($("#playArea").css("width")) - pixelsNumeric($("#generations").css("width")))/2)
+	$("#activeCells").css("left", (pixelsNumeric($("#playArea").css("width")) - pixelsNumeric($("#activeCells").css("width")))/2)
+	$("#buttons").css("left", (pixelsNumeric($("#playArea").css("width")) - pixelsNumeric($("#buttons").css("width")))/2)
+	$("#speedDiv").css("left", (pixelsNumeric($("#playArea").css("width")) - pixelsNumeric($("#speedDiv").css("width")))/2)
+
 	h = ypx / 10;
 	w = xpx / 10;
 
 	c.height = ypx;
 	c.width = xpx;
-
-  //canvasClientX = parseInt($("#myCanvas").css("left").substr(0, $("#myCanvas").css("left").length-2)) + parseInt($("#playArea").css("left").substr(0, $("#playArea").css("left").length-2));
-  //canvasClientY = parseInt($("#myCanvas").css("top").substr(0, $("#myCanvas").css("top").length-2)) + parseInt($("#playArea").css("top").substr(0, $("#playArea").css("top").length-2));
 
   $("#btnStartStop").on("click", function() {startStop();})
   $("#btnNext").on("click", function() {getNextGen();	genNr++;	displayBoard();})

@@ -21,15 +21,30 @@
       <h1>The Game of Life</h1>
       <h4>A simulation of cell growth</h4>
       <div id="playArea">
-        <div id="gen">Generation:</div>
-        <div id="count"></div>
+        <div id="generations">
+          <div id="gen">Generation:</div>
+          <div id="count"></div>
+        </div>
 
-        <button id="btnStartStop" class="btn btn-custom">Start</button>
-        <button id="btnNext" class="btn btn-custom">Next</button>
-        <button id="btnClear" class="btn btn-custom">Clear</button>
-        <button id="btnRandom" class="btn btn-custom">Randomize</button>
+        <div id="activeCells">
+          <div id="cells">Cells:</div>
+          <div id="cellCnt"></div>
+        </div>
 
-         <canvas id="myCanvas" onclick='toggle(event)'></canvas>
+        <div id="buttons">
+          <button id="btnStartStop" class="btn btn-custom">Start</button>
+          <button id="btnNext" class="btn btn-custom">Next</button>
+          <button id="btnClear" class="btn btn-custom">Clear</button>
+          <button id="btnRandom" class="btn btn-custom">Randomize</button>
+        </div>
+
+        <div id="speedDiv">
+          <span id="lowFPS">fps -</span>
+          <span><input type="range" id="speedNum" min="10" max="100" step="1" value="10" onchange="setDelay()"></span>
+          <span id="highFPS">+</span>
+        </div> 
+
+        <canvas id="myCanvas" onclick='toggle(event)'></canvas>
      </div>
 
 

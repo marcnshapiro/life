@@ -13,45 +13,87 @@ body{
   border: 2px solid black; 
 }
 
+#generations {
+  position: absolute;
+  width: 210;
+  height: 25;
+  font-size: 22px;
+}
+
 #gen {
   position: absolute;
+  top: 0px;
+  left: 0px;
   width: 130px;
   height: 25px;
-  top: 10px;
-  left: 5px;
   font-size: 22px;
 }
 
 #count {
   position: absolute;
-  width: 30px;
+  top: 0px;
+  right: 0px;
+  width: 80px;
   height: 25px;
-  top: 10px;
-  left: 140px;
+  font-size: 22px;
+}
+
+#activeCells {
+  position: absolute;
+  top: 25px;
+  width: 140;
+  height: 25;
+  font-size: 22px;
+}
+
+#cells {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 50px;
+  height: 25px;
+  font-size: 22px;
+}
+
+#cellCnt {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 90px;
+  height: 25px;
+  font-size: 22px;
+}
+
+#buttons {
+  position: absolute;
+  top: 25px;
+  width: 274;
+  height: 25;
   font-size: 22px;
 }
 
 #btnStartStop {
   position: absolute;
   width: 54px;
-  left: 226px;
+  left: 0px;
 }
 
 #btnNext {
   position: absolute;
   width: 54px;
-  left: 290px;
+  left: 64px;
 }
 
 #btnClear {
   position: absolute;
   width: 46px;
-  left: 354px;
+  left: 128px;
 }
 
 #btnRandom {
   position: absolute;
-  left: 410px;
+  width: 90;
+  left: 184px;
 }
 
 #board {
@@ -81,6 +123,39 @@ body{
   left: 5px;
   border: 1px solid black;
   display: none;
+}
+
+#speedDiv {
+  position: absolute;
+  width: 250px;
+  height: 25px;
+}
+
+#lowFPS {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 50px;
+  height: 25px;
+  font-weight: bolder;
+}
+
+#speedNum {
+  position: absolute;
+  top: 0px;
+  left: 45px;
+  width: 200px;
+  height: 25px;
+  margin-right: 0px;
+}
+
+#highFPS {
+  position: absolute;
+  top: 0px;
+  left: 240px;
+  width: 10px;
+  height: 25px;
+  font-weight: bolder;
 }
 
 .cell {
